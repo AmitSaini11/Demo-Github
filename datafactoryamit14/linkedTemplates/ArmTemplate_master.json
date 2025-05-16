@@ -11,9 +11,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage'"
 		},
+		"SqlServerLinkedService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServerLinkedService'"
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://strorageamit.dfs.core.windows.net/"
+		},
+		"SqlServerLinkedService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "15425-AMIT"
+		},
+		"SqlServerLinkedService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Azure"
+		},
+		"SqlServerLinkedService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "TEAMCOMPUTERS\\15425"
 		},
 		"containerUri": {
 			"type": "string",
@@ -45,8 +61,20 @@
 					"AzureDataLakeStorage_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage_accountKey')]"
 					},
+					"SqlServerLinkedService_password": {
+						"value": "[parameters('SqlServerLinkedService_password')]"
+					},
 					"AzureDataLakeStorage_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage_properties_typeProperties_url')]"
+					},
+					"SqlServerLinkedService_properties_typeProperties_server": {
+						"value": "[parameters('SqlServerLinkedService_properties_typeProperties_server')]"
+					},
+					"SqlServerLinkedService_properties_typeProperties_database": {
+						"value": "[parameters('SqlServerLinkedService_properties_typeProperties_database')]"
+					},
+					"SqlServerLinkedService_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServerLinkedService_properties_typeProperties_userName')]"
 					}
 				}
 			},

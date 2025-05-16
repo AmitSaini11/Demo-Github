@@ -8,8 +8,20 @@
 		"AzureDataLakeStorage_accountKey": {
 			"value": ""
 		},
+		"SqlServerLinkedService_password": {
+			"value": ""
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"value": "https://strorageamit.dfs.core.windows.net/"
+		},
+		"SqlServerLinkedService_properties_typeProperties_server": {
+			"value": "15425-AMIT"
+		},
+		"SqlServerLinkedService_properties_typeProperties_database": {
+			"value": "Azure"
+		},
+		"SqlServerLinkedService_properties_typeProperties_userName": {
+			"value": "TEAMCOMPUTERS\\15425"
 		}
 	}
 }
