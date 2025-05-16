@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@concat('RevenueData_Starting',adddays(startOfMonth(utcNow()),-1),'_Ending',utcNow(),'.csv')",
+					"value": "@concat('RevenueData_Starting_',adddays(startOfMonth(utcNow()),-1,'ddMMyyyy'),'_Ending_',utcNow(),'.csv')",
 					"type": "Expression"
 				},
 				"fileSystem": "sinksecond"
