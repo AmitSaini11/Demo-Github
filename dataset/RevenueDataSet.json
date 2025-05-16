@@ -1,0 +1,32 @@
+{
+	"name": "RevenueDataSet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "cost",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "monthOfYear",
+				"type": "varchar"
+			},
+			{
+				"name": "RevenueTillDate",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RevenueData"
+		}
+	}
+}
