@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "Fetch Lastest File or Mofified File ADLS",
 	"properties": {
 		"activities": [
 			{
