@@ -1,0 +1,30 @@
+{
+	"name": "Handle Error Rows",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Sales_data",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          salesDate as string,",
+				"          salesItem as string,",
+				"          country as string,",
+				"          Qunatity as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1"
+			]
+		}
+	}
+}

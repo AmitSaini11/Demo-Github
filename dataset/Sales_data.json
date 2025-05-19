@@ -1,0 +1,40 @@
+{
+	"name": "Sales_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "sales_data.csv",
+				"fileSystem": "adfsource"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "salesDate",
+				"type": "String"
+			},
+			{
+				"name": "salesItem",
+				"type": "String"
+			},
+			{
+				"name": "country",
+				"type": "String"
+			},
+			{
+				"name": "Qunatity",
+				"type": "String"
+			}
+		]
+	}
+}

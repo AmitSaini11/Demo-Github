@@ -1,0 +1,25 @@
+{
+	"name": "AzureSqlTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Foldername",
+				"type": "varchar"
+			},
+			{
+				"name": "countoffiles",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "countoffiles"
+		}
+	}
+}
