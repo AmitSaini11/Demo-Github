@@ -1,5 +1,5 @@
 {
-	"name": "incremental_pipeline",
+	"name": "incremental_Full_load_pipeline",
 	"properties": {
 		"activities": [
 			{
@@ -13,7 +13,6 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
@@ -21,14 +20,12 @@
 						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "DelimitedTextSink",
+						"type": "ParquetSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".csv"
+							"type": "ParquetWriteSettings"
 						}
 					},
 					"enableStaging": false,
@@ -44,17 +41,25 @@
 				"inputs": [
 					{
 						"referenceName": "RevenueDataSet",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"cutOffDate": " @pipeline().parameters.cutOffDate"
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "incremental_soruce",
+						"referenceName": "Parquet1",
 						"type": "DatasetReference"
 					}
 				]
 			}
 		],
+		"parameters": {
+			"cutOffDate": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
