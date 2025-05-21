@@ -26,7 +26,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "RevenueData"
+			"table": "sales_data"
 		}
 	}
 }
