@@ -137,6 +137,25 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "CheckIfDataWasCopied",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "SetDataCopiedFlag",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('DataHasBeenCopied '),true )",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
