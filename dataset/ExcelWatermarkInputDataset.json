@@ -1,0 +1,26 @@
+{
+	"name": "ExcelWatermarkInputDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "LastLoadConfig.xlsx",
+				"fileSystem": "metadata"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "last_update_date",
+				"type": "String"
+			}
+		]
+	}
+}

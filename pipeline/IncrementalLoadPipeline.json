@@ -1,9 +1,9 @@
 {
-	"name": "incremental_pipeline",
+	"name": "IncrementalLoadPipeline",
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
+				"name": "GetLastLoadDate",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -24,12 +24,90 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "watermark_data_set",
+						"referenceName": "ExcelWatermarkInputDataset",
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "SetEffectiveLoadDate",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetLastLoadDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "EffectiveLoadDate",
+					"value": {
+						"value": "@if(or(empty(activity('GetLastLoadDate').output.firstRow), empty(activity('GetLastLoadDate').output.firstRow.last_update_date)), '1900-01-01T00:00:00Z', activity('GetLastLoadDate').output.firstRow.last_update_date)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "CopyNewData",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "SetEffectiveLoadDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": {
+							"value": "SELECT *\nFROM sales_data\nWHERE last_update_date > '@{variables('EffectiveLoadDate')}'\nAND last_update_date <= '@{variables('CurrentRunStartTime ')}' \n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceTableDataset",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
+		"variables": {
+			"CurrentRunStartTime ": {
+				"type": "String",
+				"defaultValue": "@utcnow()"
+			},
+			"PreviousLoadDate ": {
+				"type": "String",
+				"defaultValue": "@activity('GetLastLoadDate').output.firstRow.last_update_date"
+			},
+			"EffectiveLoadDate": {
+				"type": "String"
+			},
+			"DataHasBeenCopied ": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
