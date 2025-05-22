@@ -1,0 +1,72 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "LookupLastLoadDate",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"dataset": {
+						"referenceName": "ExcelWatermarkInputDataset",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "SetLastLoadDateVar",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "LookupLastLoadDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "LastLoadDate",
+					"value": ""
+				}
+			}
+		],
+		"variables": {
+			"LastLoadDate": {
+				"type": "String",
+				"defaultValue": "\"1900-01-01T00:00:00Z\""
+			},
+			"NewMaxUpdatedDate": {
+				"type": "String"
+			},
+			"RowsCopied ": {
+				"type": "Integer",
+				"defaultValue": 0
+			},
+			"SourceQuery ": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
