@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -78,6 +79,7 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -130,7 +132,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "insert into dbo.countoffiles select '{@item().name}',@{int(activity('Filter1').outputItemsCount)}; select 1 as output",
+									"sqlReaderQuery": {
+										"value": "insert into dbo.countoffiles select '{@item().name}',@{int(activity('Filter1').outputItemsCount)}; select 1 as output",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -144,6 +149,8 @@
 				}
 			}
 		],
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2025-05-21T06:01:09Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

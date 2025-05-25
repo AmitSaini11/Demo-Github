@@ -34,5 +34,6 @@
 			"schema": "dbo",
 			"table": "tbl_sales"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

@@ -5,11 +5,6 @@
 			"referenceName": "SqlServerLinkedService",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"cutOffDate": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [
@@ -33,5 +28,6 @@
 			"schema": "dbo",
 			"table": "sales_data"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

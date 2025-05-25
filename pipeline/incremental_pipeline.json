@@ -1,5 +1,5 @@
 {
-	"name": "Dynamic_name_TargetFile_pipeline_run_date",
+	"name": "incremental_pipeline",
 	"properties": {
 		"activities": [
 			{
@@ -28,7 +28,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".csv"
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
@@ -49,14 +49,14 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "RevenueDataSink",
+						"referenceName": "incremental_soruce",
 						"type": "DatasetReference"
 					}
 				]
 			}
 		],
 		"annotations": [],
-		"lastPublishTime": "2025-05-16T08:57:56Z"
+		"lastPublishTime": "2025-05-21T06:01:08Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
